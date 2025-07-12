@@ -27,6 +27,16 @@ class Prueba {
                 return res.json("ok")
 
 
+            }else{
+                const prueba = new this.pruebaEntity({
+                    userId: req.body.userId,
+                    title: req.body.title,
+                    body: req.body.body
+                })
+
+                await this.pruebaEntity.create(prueba.dataValues)
+
+                return res.json("ok")
             }
         } catch (error) {
 
