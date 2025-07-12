@@ -13,11 +13,15 @@ class Prueba {
 
         try {
             if (Array.isArray(req.body)) {
-                let prueba;
-
 
                 req.body.forEach(async (n) => {
-                    await this.pruebaEntity.create(n)
+                    const prueba = new this.pruebaEntity({
+                        userId: n.userId,
+                        title: n.title,
+                        body: n.body
+                    })
+
+                    await this.pruebaEntity.create(prueba.dataValues)
                 })
 
                 return res.json("ok")
